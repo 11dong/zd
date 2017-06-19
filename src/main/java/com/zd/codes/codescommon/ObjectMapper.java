@@ -39,7 +39,7 @@ public class ObjectMapper<T> implements RowMapper<T> {
 		} catch (InstantiationException e1) {
 			e1.printStackTrace();
 			return null;
-		}catch (  IllegalAccessException e1) {
+		} catch (IllegalAccessException e1) {
 			e1.printStackTrace();
 			return null;
 		}

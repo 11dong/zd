@@ -52,6 +52,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 	// --------------------------------------------------------可公开接口---------------------------------------------------
 
 	// ****************************删除******************
+	
 	public int deleteById(String id) {
 		String sql = jdbcHelper.getDeleteByIdSql();
 		Object[] obj = new Object[] { id };
@@ -59,6 +60,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 		return this.getJdbcTemplate().update(sql, obj);
 	}
 
+	
 	public int deleteByCondition(String condition, Object[] args) {
 		String sql = new StringBuilder().append("delete from ").append(jdbcHelper.getTable()).append(" where ").append(condition)
 				.toString();
@@ -66,6 +68,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 		return this.getJdbcTemplate().update(sql, args);
 	}
 
+	
 	public int deleteByCondition(String tableName, String condition, Object[] args) {
 		String sql = new StringBuilder().append("delete from ").append(tableName).append(" where ").append(condition).toString();
 		this.debug(sql, args);
@@ -73,39 +76,46 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 	}
 
 	// *****************************************************添加**************************************************************************
+	
 	public int insertObj(T entity) {
 		return this.insert(entity);
 	}
 
 	// ****************************************************修改**************************************************************************
+	
 	public int updateByID(T entity) {
 		return this.updateByConditions(entity, new String[] { jdbcHelper.getKey() });
 	}
 
+	
 	public int updateByCondition(T entity, String[] conditions) {
 		return this.updateByConditions(entity, conditions);
 	}
 
 	// ***********************************************************根据页面条件查询记录条数***********************************************
-
+	
 	public int getRows() {
 		String sql = jdbcHelper.getGetRowsSql();
 		this.debug(sql, null);
 		return this.getJdbcTemplate().queryForObject(sql, Integer.class);
 	}
 
+	
 	public int getRows(Map<String, Object> filterMap) {
 		return this.queryCount(jdbcHelper.getGetRowsSql(), filterMap);
 	}
 
+	
 	public int getRows(ConditionBuilder condition) {
 		return this.queryCount(jdbcHelper.getGetRowsSql(), condition);
 	}
 
+	
 	public Integer joinQueryRows(JoinQuery jq, ConditionBuilder condition) {
 		return this.queryCount(jq.getSql(jdbcHelper.getTable()), condition);
 	}
 
+	
 	public Integer joinQueryRows(JoinQuery jq, Map<String, Object> filterMap) {
 		return this.queryCount(jq.getSql(jdbcHelper.getTable()), filterMap);
 	}
@@ -113,6 +123,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 	// *****************************************************查询***************************************************************
 
 	@SuppressWarnings("unchecked")
+	
 	public List<T> findAll() {
 		String sql = jdbcHelper.getFindAllSql();
 		this.debug(sql, null);
@@ -120,6 +131,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 	}
 
 	@SuppressWarnings("unchecked")
+	
 	public T findByID(String id) {
 		String sql = jdbcHelper.getFindByIdSql();
 		Object[] obj = new Object[] { id };
@@ -129,48 +141,49 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 	}
 
 	@SuppressWarnings("unchecked")
+	
 	public List<T> getByConduition(Map<String, Object> filterMap, PageParameters par) {
 		return this.queryList(jdbcHelper.getQuerySql(), filterMap, par, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> getByConduition(Map<String, Object> filterMap) {
 		return this.queryList(jdbcHelper.getQuerySql(), filterMap, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> joinQueryByConduition(JoinQuery jq, Map<String, Object> filterMap, PageParameters par) {
 		return this.queryList(jq.getSql(jdbcHelper.getTable()), filterMap, par, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> joinQueryByConduition(JoinQuery jq, Map<String, Object> filterMap) {
 		return this.queryList(jq.getSql(jdbcHelper.getTable()), filterMap, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> getByConduition(ConditionBuilder condition, PageParameters par) {
 		return this.queryList(jdbcHelper.getQuerySql(), condition, par, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> getByConduition(ConditionBuilder condition) {
 		return this.queryList(jdbcHelper.getQuerySql(), condition, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> joinQueryByConduition(JoinQuery jq, ConditionBuilder condition, PageParameters par) {
 		return this.queryList(jq.getSql(jdbcHelper.getTable()), condition, par, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
 	public List<T> joinQueryByConduition(JoinQuery jq, ConditionBuilder condition) {
 		return this.queryList(jq.getSql(jdbcHelper.getTable()), condition, (RowMapper<T>) jdbcHelper.getRowMapper());
 	}
@@ -243,7 +256,8 @@ public abstract class BaseDaoImpl<T extends Serializable> implements IBaseDao<T>
 			}
 		}
 		String querysql = new StringBuilder().append(sql).append(SqlAndObjProduceUtil.genSql(filterMap)).append(sb.toString())
-				.append(SqlWord.LIMIT).append(" ?,?  ").toString();
+				.append(SqlWord.LIMIT)
+				.append(" ?,?  ").toString();
 		Object[] obj = SqlAndObjProduceUtil.genSqlParameters(filterMap, par);
 		this.debug(querysql, obj);
 		return (List<T>) this.getJdbcTemplate().query(querysql, obj, jdbcHelper.getRowMapper());

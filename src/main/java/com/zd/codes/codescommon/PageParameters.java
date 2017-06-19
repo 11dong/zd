@@ -6,7 +6,7 @@ package com.zd.codes.codescommon;
  * @author 11
  *
  */
-public class PageBean {
+public class PageParameters {
 
 	private int page = 1;
 	private int rows = 10;
@@ -14,11 +14,11 @@ public class PageBean {
 	private String order;
 	private String group;
 
-	public PageBean(int rows) {
+	public PageParameters(int rows) {
 		this.rows = rows;
 	}
 
-	public PageBean() {
+	public PageParameters() {
 	}
 
 	public int getPage() {
