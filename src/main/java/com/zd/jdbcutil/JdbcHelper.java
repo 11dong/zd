@@ -1,4 +1,4 @@
-package com.zd.codes.codescommon;
+package com.zd.jdbcutil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zd.codes.codescommon.DbColumn.ColumType;
+import com.zd.jdbcutil.DbColumn.ColumType;
+
 
 /**
  * jdbc对象解析帮助工具

@@ -1,4 +1,4 @@
-package com.zd.codes.codescommon;
+package com.zd.jdbcutil;
 
 import java.io.Serializable;
 import java.util.Arrays;

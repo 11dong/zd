@@ -1,4 +1,4 @@
-package com.zd.codes.codescommon;
+package com.zd.jdbcutil;
 
 /**
  * 分页参数

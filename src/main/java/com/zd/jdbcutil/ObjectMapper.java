@@ -1,4 +1,4 @@
-package com.zd.codes.codescommon;
+package com.zd.jdbcutil;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -11,7 +11,8 @@ import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.zd.codes.codescommon.DbColumn.ColumType;
+import com.zd.jdbcutil.DbColumn.ColumType;
+
 
 //--------------jdbc自动装配，数据量过大不建议使用---------------
 public class ObjectMapper<T> implements RowMapper<T> {

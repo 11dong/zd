@@ -1,4 +1,4 @@
-package com.zd.codes.codescommon;
+package com.zd.jdbcutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
